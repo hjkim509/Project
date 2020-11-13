@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>나의 리뷰 노트</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wholePage {
+            margin: auto;
+            display: block;
+            background-color: mediumpurple;
+        }
+
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            showPost();
+        })
+
+        function showPost() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:5000/",
+                data: {},
+                success: function (response) {
+                    let reviews = response['reviews'];
+
+                    for (let i = 0; i < reviews.length; i++) {
+                        let movieReviews = reviews[i]
+                        let imageUrl = review['image']
+                        let movieTitle = review['title'];
+                        let movieRating = review['rating'];
+                        let movieComment = review['comment'];
+                        let movieReview = review['desc'];
+
+
+                        makeCard(review["image"], review["title"], review["rating"], review["comment"], review["desc"])
+                    }
+
+                    function makeCard(image, title, rating, comment, desc) {
+                        let tempHtml = `<div class="card">
+                                            <img class="card-img-top" src="${image}"
+                                                 alt="Card image cap">
+                                            <div class="card-body">
+                                                 <a href="" class="card-title">${title}</a>
+                                                 <p class="card-text comment">"${comment}"</p>
+                                                 <p class="card-text">${desc}</p>
+                                            </div>
+                                        </div>`;
+                        $('#cards-box').append(tempHtml)
+                    }
+                }
+            })
+        }
+
+    </script>
+
+</head>
+
+<body>
+<div class="wholePage">
+    <h1 class="title">THE MOVIE LIFE</h1>
+    <div class="category">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="index.html">홈으로 돌아가기</a>
+        </nav>
+    </div>
+<!--    카드등록하기-->
+<!--    <div class="card" style="width: 18rem;">-->
+<!--        <img src="${image}" class="card-img-top" alt="...">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title">${title}</h5>-->
+<!--            <p>${rating}</p>-->
+<!--            <h4>"${comment}"</h4>-->
+<!--            <p class="card-text">${desc}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+</body>
+
+</html>
