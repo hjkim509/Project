@@ -30,9 +30,32 @@
         }
 
         .wholePage {
-            margin: auto;
+            margin: auto 300px auto 300px;
             display: block;
             background-color: mediumpurple;
+        }
+
+        .title {
+            margin: auto 300px auto 300px;
+            display: block;
+            font-weight: bold;
+            color: aliceblue;
+            padding: 35px;
+        }
+
+        A:link {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        A:visited {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        A:hover {
+            text-decoration: none;
+            color: aliceblue;
         }
 
     </style>
@@ -45,7 +68,7 @@
         function showPost() {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:5000/",
+                url: "/myreviews",
                 data: {},
                 success: function (response) {
                     let reviews = response['reviews'];
@@ -67,7 +90,8 @@
                                             <img class="card-img-top" src="${image}"
                                                  alt="Card image cap">
                                             <div class="card-body">
-                                                 <a href="" class="card-title">${title}</a>
+                                                 <a href="#" class="card-title">${title}</a>
+                                                 <p class="card-text">${rating}</p>
                                                  <p class="card-text comment">"${comment}"</p>
                                                  <p class="card-text">${desc}</p>
                                             </div>
@@ -84,22 +108,21 @@
 
 <body>
 <div class="wholePage">
-    <h1 class="title">THE MOVIE LIFE</h1>
-    <div class="category">
-        <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted" href="index.html">홈으로 돌아가기</a>
-        </nav>
+    <div>
+        <a href="/"><h1 class="title">THE MOVIE LIFE</h1></a>
     </div>
-<!--    카드등록하기-->
-<!--    <div class="card" style="width: 18rem;">-->
-<!--        <img src="${image}" class="card-img-top" alt="...">-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title">${title}</h5>-->
-<!--            <p>${rating}</p>-->
-<!--            <h4>"${comment}"</h4>-->
-<!--            <p class="card-text">${desc}</p>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    카드등록하기-->
+    <div class="card">
+        <img class="card-img-top" src="${image}"
+             alt="Card image cap">
+        <div class="card-body">
+            <a href="" class="card-title">${title}</a>
+            <p></p>
+            <p class="card-text comment">"${comment}"</p>
+            <p class="card-text">${desc}</p>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 
