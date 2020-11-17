@@ -40,10 +40,6 @@
             color: slateblue;
         }
 
-        /*.category {*/
-        /*    color: mediumslateblue;*/
-        /*}*/
-
         .line {
             display: block;
             margin: auto auto 10px auto;
@@ -78,6 +74,11 @@
             background-color: aliceblue;
         }
 
+        A:hover {
+            text-decoration: none;
+            color: mediumpurple;
+        }
+
 
     </style>
     <script>
@@ -102,13 +103,17 @@
                 data: {},
                 success: function (response) {
                     let reviews = response['reviews'];
+
                     for (let i = 0; i < reviews.length; i++) {
+                        let imageUrl = reviews[i]['imageUrl']
                         let title = reviews[i]['title'];
                         let rating = reviews[i]['rating'];
                         let comment = reviews[i]['comment'];
                         let review = reviews[i]['review'];
 
-                        let tempHtml = `<tr>
+
+                            let tempHtml = `<tr>
+                                             <td>${imageUrl}</td>
                                              <th scope="row">${title}</th>
                                              <td>${rating}</td>
                                              <td>${comment}</td>
@@ -122,6 +127,7 @@
         }
 
         function review() {
+            let imageUrl = $(#review-imageUrl).val()
             let title = $('#review-title').val()
             let rating = $('#review-rating').val()
             let comment = $('#review-comment').val()
@@ -130,6 +136,8 @@
 
             if (title == '') {
                 alert('제목을 입력하세요');
+            } else if (imageUrl == '') {
+                alert('이미지 주소를 입력하세요');
             } else if (rating == '-- 평점을 선택하세요 --') {
                 alert('평점을 입력하세요');
             } else if (comment == '') {
@@ -143,7 +151,7 @@
             $.ajax({
                 type: "POST",
                 url: "/review",
-                data: {'title_give': title, 'rating_give': rating, 'comment_give': comment, 'review_give': review},
+                data: {'title_give': title, 'imageUrl_give': imageUrl, 'rating_give': rating, 'comment_give': comment, 'review_give': review},
                 success: function (response) {
                     if (response["result"] == "success") {
                         alert(response["msg"]);
@@ -194,7 +202,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">사진 주소</span>
             </div>
-            <input type="text" class="form-control" id="imageUrl" aria-describedby="basic-addon3">
+            <input type="text" class="form-control" id="review-imageUrl" aria-describedby="basic-addon3">
         </div>
 
         <div class="input-group mb-3">
@@ -264,9 +272,6 @@
 
     </div>
 
-</div>
-
-</div>
 </div>
 </body>
 </html>

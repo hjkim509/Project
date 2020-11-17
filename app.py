@@ -19,6 +19,7 @@ def my_reviews():
 @app.route('/review', methods=['POST'])
 def save_reviews():
     # 1. 클라이언트로부터 데이터를 받기
+    imageUrl_receive = request.form['imageUrl_give']
     title_receive = request.form['title_give']
     rating_receive = request.form['rating_give']
     comment_receive = request.form['comment_give']
@@ -26,6 +27,7 @@ def save_reviews():
 
     # 2. meta tag를 스크래핑하기
     doc = {
+        'imageUrl': imageUrl_receive,
         'title': title_receive,
         'rating': rating_receive,
         'comment': comment_receive,
@@ -37,11 +39,11 @@ def save_reviews():
 
     return jsonify({'result': 'success', 'msg':'저장이 완료되었습니다!'})
 
-@app.route('/readreviews', methods=['GET'])
+@app.route('/reviews/list', methods=['GET'])
 def read_reviews():
     result = list(db.review.find({}, {'_id': 0}))
     return jsonify({'result': 'success', 'reviews': result})
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=6777, debug=True)

@@ -58,6 +58,10 @@
             color: aliceblue;
         }
 
+        .card {
+            padding: 20px;
+        }
+
     </style>
 
     <script>
@@ -68,30 +72,24 @@
         function showPost() {
             $.ajax({
                 type: "GET",
-                url: "/myreviews",
+                url: "/reviews/list",
                 data: {},
                 success: function (response) {
                     let reviews = response['reviews'];
+                    console.log(reviews);
 
                     for (let i = 0; i < reviews.length; i++) {
-                        let movieReviews = reviews[i]
-                        let imageUrl = review['image']
-                        let movieTitle = review['title'];
-                        let movieRating = review['rating'];
-                        let movieComment = review['comment'];
-                        let movieReview = review['desc'];
+                        let review = reviews[i];
 
-
-                        makeCard(review["image"], review["title"], review["rating"], review["comment"], review["desc"])
+                        makeCard(review["imageUrl"], review["title"], review["rating"], review["comment"], review["desc"])
                     }
-
-                    function makeCard(image, title, rating, comment, desc) {
+                    function makeCard(imageUrl, title, rating, comment, desc) {
                         let tempHtml = `<div class="card">
-                                            <img class="card-img-top" src="${image}"
+                                            <img class="card-img-top" src="${imageUrl}"
                                                  alt="Card image cap">
                                             <div class="card-body">
                                                  <a href="#" class="card-title">${title}</a>
-                                                 <p class="card-text">${rating}</p>
+                                                 <p class="card-text">${rating}/5.0</p>
                                                  <p class="card-text comment">"${comment}"</p>
                                                  <p class="card-text">${desc}</p>
                                             </div>
@@ -111,15 +109,13 @@
     <div>
         <a href="/"><h1 class="title">THE MOVIE LIFE</h1></a>
     </div>
-    <!--    카드등록하기-->
-    <div class="card">
-        <img class="card-img-top" src="${image}"
-             alt="Card image cap">
+    <div id="cards-box" class="card">
+        <img class="card-img-top" src="">
         <div class="card-body">
-            <a href="" class="card-title">${title}</a>
+            <a href="" class="card-title"></a>
             <p></p>
-            <p class="card-text comment">"${comment}"</p>
-            <p class="card-text">${desc}</p>
+            <p class="card-text comment"></p>
+            <p class="card-text"></p>
         </div>
     </div>
 </div>
