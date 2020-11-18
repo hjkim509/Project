@@ -28,21 +28,23 @@
         }
 
         .wholePage {
-            margin-left: 300px;
-            margin-right: 300px;
+            margin: auto 10% auto 10%;
+            display: block;
         }
 
         .title {
-            width: 300px;
-            margin: 50px auto auto auto;
+            margin: 30px auto auto auto;
             display: block;
             font-weight: bold;
             color: slateblue;
+            padding: 20px;
+            text-align: center;
         }
 
         .line {
+            width: auto;
             display: block;
-            margin: auto auto 10px auto;
+            margin: auto auto 1% auto;
         }
 
         .introBox {
@@ -53,7 +55,7 @@
             background-position: center;
             background-size: cover;
             color: ghostwhite;
-            width: 900px;
+            width: auto;
             height: auto;
             margin: auto auto 10px auto;
         }
@@ -228,7 +230,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">관람장소</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input id="place" type="text" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
         </div>
 
@@ -236,7 +238,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">관람일자</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input id="date" type="text" class="form-control" aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-default">
         </div>
 
