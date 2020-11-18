@@ -30,8 +30,7 @@
         }
 
         .wholePage {
-            margin: auto 300px auto 300px;
-            display: block;
+            padding-top: 20px;
             background-color: mediumpurple;
         }
 
@@ -41,6 +40,17 @@
             color: aliceblue;
             padding: 35px;
             text-align: center;
+        }
+
+        .card {
+            border-radius: 10px;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        .card-array{
+            margin: auto 300px auto 300px;
+            display: block;
         }
 
         A:link {
@@ -56,10 +66,6 @@
         A:hover {
             text-decoration: none;
             color: aliceblue;
-        }
-
-        #cards-box {
-            padding: 20px;
         }
 
     </style>
@@ -108,8 +114,10 @@
     <div>
         <a href="/"><h1 class="title">THE MOVIE LIFE</h1></a>
     </div>
-    <div id="cards-box" class="card-columns">
+    <div class="card-array">
+    <div id="cards-box" class="card-columns"></div>
     </div>
+
 </div>
 </body>
 </html>
