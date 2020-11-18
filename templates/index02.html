@@ -30,16 +30,16 @@
         }
 
         .wholePage {
-            margin: auto 10% auto 10%;
+            margin: auto 300px auto 300px;
             display: block;
+            background-color: mediumpurple;
         }
 
         .title {
-            margin: auto 10% auto 10%;
             display: block;
             font-weight: bold;
-            color: slateblue;
-            padding: 5%;
+            color: aliceblue;
+            padding: 35px;
             text-align: center;
         }
 
@@ -59,15 +59,7 @@
         }
 
         #cards-box {
-            width: 25%;
-            height: auto;
-        }
-
-        .card-img-top {
-            padding: 1%;
-        }
-
-        .card-body {
+            padding: 20px;
         }
 
     </style>
@@ -75,7 +67,7 @@
     <script>
         $(document).ready(function () {
             showPost();
-        })
+        });
 
         function showPost() {
             $.ajax({
@@ -88,24 +80,23 @@
 
                     for (let i = 0; i < reviews.length; i++) {
                         let review = reviews[i];
-
-                        makeCard(review["imageUrl"], review["title"], review["rating"], review["comment"], review["desc"])
-                    }
-                    function makeCard(imageUrl, title, rating, comment, desc) {
-                        let tempHtml = `<div class="card">
-                                            <img class="card-img-top" src="${imageUrl}"
-                                                 alt="Card image cap">
-                                            <div class="card-body">
-                                                 <p class="card-title">${title}</p>
-                                                 <p class="card-text">${rating}/5.0</p>
-                                                 <p class="card-text comment">"${comment}"</p>
-                                                 <p class="card-text">${desc}</p>
-                                            </div>
-                                        </div>`;
-                        $('#cards-box').append(tempHtml)
+                        makeCard(review["imageUrl"], review["title"], review["rating"], review["comment"], review["review"]);
                     }
                 }
-            })
+            });
+        }
+
+        function makeCard(imageUrl, title, rating, comment, desc) {
+            let temp = `<div class="card">
+                            <img class="card-img-top" src="${imageUrl}">
+                            <div class="card-body">
+                                <h5 class="card-title">${title}</h5>
+                                <p class="card-text">${rating}/10</p>
+                                <p class="card-text">${comment}</p>
+                                <p class="card-text">${desc}</p>
+                            </div>
+                        </div>`;
+            $('#cards-box').append(temp);
         }
 
     </script>
@@ -117,10 +108,8 @@
     <div>
         <a href="/"><h1 class="title">THE MOVIE LIFE</h1></a>
     </div>
-    <div id="cards-box" class="card">
+    <div id="cards-box" class="card-columns">
     </div>
 </div>
-</div>
 </body>
-
 </html>

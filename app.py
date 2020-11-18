@@ -18,14 +18,12 @@ def my_reviews():
 
 @app.route('/review', methods=['POST'])
 def save_reviews():
-    # 1. 클라이언트로부터 데이터를 받기
     imageUrl_receive = request.form['imageUrl_give']
     title_receive = request.form['title_give']
     rating_receive = request.form['rating_give']
     comment_receive = request.form['comment_give']
     review_receive = request.form['review_give']
 
-    # 2. meta tag를 스크래핑하기
     doc = {
         'imageUrl': imageUrl_receive,
         'title': title_receive,
@@ -34,7 +32,6 @@ def save_reviews():
         'review': review_receive
     }
 
-    # 3. mongoDB에 데이터 넣기
     db.review.insert_one(doc)
 
     return jsonify({'result': 'success', 'msg':'저장이 완료되었습니다!'})
