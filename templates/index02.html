@@ -48,9 +48,13 @@
             margin: 10px;
         }
 
-        .card-array{
+        .card-array {
             margin: auto 300px auto 300px;
             display: block;
+        }
+
+        .card-title {
+            font-weight: bold;
         }
 
         A:link {
@@ -97,8 +101,8 @@
                             <img class="card-img-top" src="${imageUrl}">
                             <div class="card-body">
                                 <h5 class="card-title">${title}</h5>
-                                <p class="card-text">${rating}/10</p>
-                                <p class="card-text">${comment}</p>
+                                <p class="card-text">${rating}/10점</p>
+                                <p class="card-text">"${comment}"</p>
                                 <p class="card-text">${desc}</p>
                             </div>
                         </div>`;
